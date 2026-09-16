@@ -1,0 +1,159 @@
+{
+  "capabilityId" : "redact_test",
+  "name" : "redact test",
+  "version" : 1,
+  "description" : "Recorded from a live discovery run: search for member 10001 and read their savings balance",
+  "target" : {
+    "appId" : "target-app",
+    "vendorProduct" : "target-app-vendor",
+    "uiTechnology" : "web_legacy",
+    "baseUrlPattern" : "{base_url}",
+    "entryRoute" : "/search"
+  },
+  "inputSchema" : [ {
+    "name" : "member_id",
+    "type" : "NUMBER",
+    "required" : true,
+    "description" : "",
+    "sensitive" : false
+  } ],
+  "outputSchema" : [ {
+    "name" : "savings_balance",
+    "type" : "STRING",
+    "description" : "",
+    "extractedFromStep" : "s4_extract",
+    "sensitive" : false
+  } ],
+  "steps" : [ {
+    "stepId" : "s0_navigate_entry",
+    "action" : "NAVIGATE",
+    "locator" : null,
+    "valueTemplate" : "{{base_url}}/search",
+    "extractAs" : null,
+    "checkpointNote" : "entry point loaded",
+    "riskLevel" : "SAFE",
+    "timeoutMs" : 8000,
+    "retry" : {
+      "maxAttempts" : 2,
+      "backoffMs" : 800
+    }
+  }, {
+    "stepId" : "s1_fill",
+    "action" : "FILL",
+    "locator" : {
+      "strategy" : "ROLE_NAME",
+      "role" : "textbox",
+      "name" : "Member ID or Number",
+      "text" : null,
+      "css" : null,
+      "nth" : 0,
+      "fallbacks" : [ {
+        "strategy" : "LABEL_TEXT",
+        "role" : null,
+        "name" : "Member ID or Number",
+        "text" : null,
+        "css" : null,
+        "nth" : 0,
+        "fallbacks" : [ ]
+      } ]
+    },
+    "valueTemplate" : "{{member_id}}",
+    "extractAs" : null,
+    "checkpointNote" : "I'll help you search for member 10001 and read their savings balance. Let me start by entering the member ID in the search box.",
+    "riskLevel" : "SAFE",
+    "timeoutMs" : 8000,
+    "retry" : {
+      "maxAttempts" : 2,
+      "backoffMs" : 800
+    }
+  }, {
+    "stepId" : "s2_click",
+    "action" : "CLICK",
+    "locator" : {
+      "strategy" : "ROLE_NAME",
+      "role" : "button",
+      "name" : "Search",
+      "text" : null,
+      "css" : null,
+      "nth" : 0,
+      "fallbacks" : [ {
+        "strategy" : "LABEL_TEXT",
+        "role" : null,
+        "name" : "Search",
+        "text" : null,
+        "css" : null,
+        "nth" : 0,
+        "fallbacks" : [ ]
+      } ]
+    },
+    "valueTemplate" : null,
+    "extractAs" : null,
+    "checkpointNote" : "Good! The member ID has been entered. Now let me click the Search button to find the member.",
+    "riskLevel" : "SAFE",
+    "timeoutMs" : 8000,
+    "retry" : {
+      "maxAttempts" : 2,
+      "backoffMs" : 800
+    }
+  }, {
+    "stepId" : "s3_click",
+    "action" : "CLICK",
+    "locator" : {
+      "strategy" : "ROLE_NAME",
+      "role" : "link",
+      "name" : "View Member →",
+      "text" : null,
+      "css" : null,
+      "nth" : 0,
+      "fallbacks" : [ {
+        "strategy" : "LABEL_TEXT",
+        "role" : null,
+        "name" : "View Member →",
+        "text" : null,
+        "css" : null,
+        "nth" : 0,
+        "fallbacks" : [ ]
+      } ]
+    },
+    "valueTemplate" : null,
+    "extractAs" : null,
+    "checkpointNote" : "Perfect! The search found member 10001 (Jordan Rivera). Now I need to click on \"View Member →\" to access their account details and see the savings balance.",
+    "riskLevel" : "SAFE",
+    "timeoutMs" : 8000,
+    "retry" : {
+      "maxAttempts" : 2,
+      "backoffMs" : 800
+    }
+  }, {
+    "stepId" : "s4_extract",
+    "action" : "EXTRACT",
+    "locator" : {
+      "strategy" : "CSS",
+      "role" : null,
+      "name" : null,
+      "text" : null,
+      "css" : "xpath=//tr[td[1][normalize-space()=\"Savings\"]]/td[3]",
+      "nth" : 0,
+      "fallbacks" : [ ]
+    },
+    "valueTemplate" : null,
+    "extractAs" : "savings_balance",
+    "checkpointNote" : "Excellent! I can now see the member details page with the savings balance. Let me extract the savings balance.",
+    "riskLevel" : "SAFE",
+    "timeoutMs" : 8000,
+    "retry" : {
+      "maxAttempts" : 2,
+      "backoffMs" : 800
+    }
+  } ],
+  "successCondition" : {
+    "kind" : "TEXT_CONTAINS",
+    "value" : "ACCOUNT TYPE\tACCOUNT NUMBER\tBALANCE"
+  },
+  "knownOutcomes" : [ ],
+  "allowlistProfile" : "default",
+  "reviewed" : false,
+  "createdAt" : "2026-09-16T02:22:51.122755Z",
+  "createdFromRunId" : "discovery-40bdf195",
+  "schemaVersion" : 1
+}

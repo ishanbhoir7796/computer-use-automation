@@ -1,0 +1,16 @@
+{
+  "status" : "ESCALATED",
+  "capabilityId" : "lookup_savings_balance",
+  "capabilityVersion" : 1,
+  "runId" : "replay-51f99eb6",
+  "outputs" : { },
+  "outcomeCode" : "SESSION_EXPIRED",
+  "message" : "operator aborted",
+  "failedStepId" : "s0_navigate_entry",
+  "expected" : null,
+  "observed" : null,
+  "evidenceDir" : null,
+  "startedAt" : "2026-09-16T02:07:28.370023900Z",
+  "finishedAt" : "2026-09-16T02:08:33.268357800Z",
+  "okForCaller" : false
+}

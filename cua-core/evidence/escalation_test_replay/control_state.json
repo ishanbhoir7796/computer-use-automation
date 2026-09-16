@@ -1,0 +1,21 @@
+{
+  "owner" : "automation",
+  "intervention" : {
+    "interventionId" : "intervention-2344e70f",
+    "runId" : "replay-51f99eb6",
+    "runKind" : "replay",
+    "capabilityId" : "lookup_savings_balance",
+    "goalOrCapabilityName" : "lookup savings balance",
+    "reason" : "Teller session timed out mid-flow; cannot proceed without a fresh login.",
+    "reasonCode" : "SESSION_EXPIRED",
+    "failedStepId" : "s0_navigate_entry",
+    "cdpEndpoint" : "http://localhost:9222",
+    "screenshotPath" : "evidence/escalation_test_replay/escalation_s0_navigate_entry.png",
+    "pageUrl" : "http://localhost:8080/member/10001?simulate=timeout",
+    "visibleTextExcerpt" : "Horizon Bank: Teller Console\nSESSION EXPIRED (440): Your teller session has timed out due to inactivity. Please log in again to continue.",
+    "createdAt" : "2026-09-16T02:07:28.606865100Z"
+  },
+  "resolution" : "aborted",
+  "humanActions" : [ ],
+  "updatedAt" : 1789524512.530232100
+}

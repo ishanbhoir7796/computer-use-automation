@@ -1,0 +1,16 @@
+{
+  "status" : "BUSINESS_OUTCOME",
+  "capabilityId" : "lookup_savings_balance",
+  "capabilityVersion" : 1,
+  "runId" : "replay-523862b9",
+  "outputs" : { },
+  "outcomeCode" : "MEMBER_NOT_FOUND",
+  "message" : "Search returned zero members for the given ID -- a legitimate answer, not a crash.",
+  "failedStepId" : null,
+  "expected" : null,
+  "observed" : null,
+  "evidenceDir" : null,
+  "startedAt" : "2026-09-14T22:44:49.228359800Z",
+  "finishedAt" : "2026-09-14T22:44:49.390890800Z",
+  "okForCaller" : true
+}

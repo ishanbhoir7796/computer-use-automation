@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Member Detail</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9edf2 100%);
+            margin: 0; padding: 0; color: #1a2332;
+        }
+        .titlebar {
+            background: #0f2942; color: #fff; padding: 16px 28px;
+            font-size: 16px; font-weight: 600; letter-spacing: 0.3px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .content { padding: 32px; max-width: 720px; margin: 0 auto; }
+        .card {
+            background: #fff; border-radius: 12px; padding: 28px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+        }
+        .back-link { display: inline-block; margin-bottom: 16px; font-size: 13px; }
+        table { border-collapse: collapse; width: 100%; }
+        td, th { padding: 10px 14px; font-size: 14px; text-align: left; }
+        th {
+            background: #f0f3f7; color: #52606d; font-weight: 600;
+            font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        table.data tr:not(:first-child) { border-top: 1px solid #eef1f4; }
+        .banner {
+            background: #eef4ff; border: 1px solid #c7dcfd; border-radius: 8px;
+            padding: 14px 18px; margin-bottom: 20px; font-size: 14px; color: #1e3a8a;
+        }
+        a { color: #2563eb; text-decoration: none; font-weight: 500; }
+        a:hover { text-decoration: underline; }
+        .btn-link {
+            display: inline-block; padding: 10px 20px; background: #2563eb;
+            color: #fff !important; border-radius: 8px; font-weight: 600;
+            text-decoration: none;
+        }
+        .btn-link:hover { background: #1d4ed8; text-decoration: none; }
+    </style>
+</head>
+<body>
+<div class="titlebar">Horizon Bank: Teller Console</div>
+<div class="content">
+    <a class="back-link" th:href="@{/search}">&larr; Back to Search</a>
+    <div class="card">
+
+        <div class="banner">
+            Member: <strong th:text="${member.name}"></strong>
+            &nbsp;(ID <span th:text="${member.memberId}"></span>)
+        </div>
+
+        <table class="data">
+            <tr><th>Account Type</th><th>Account Number</th><th>Balance</th></tr>
+            <tr th:each="a : ${member.accounts}">
+                <td th:text="${a.type}"></td>
+                <td th:text="${a.number}"></td>
+                <td th:text="${'$' + #numbers.formatDecimal(a.balance, 1, 2)}"></td>
+            </tr>
+        </table>
+
+        <p style="margin-top:20px">
+            <a class="btn-link" th:href="@{/member/{id}/open-account(id=${member.memberId})}">
+                Open New Sub-Account
+            </a>
+        </p>
+
+    </div>
+</div>
+</body>
+</html>

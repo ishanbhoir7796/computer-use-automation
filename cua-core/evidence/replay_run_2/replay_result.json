@@ -1,0 +1,18 @@
+{
+  "status" : "SUCCESS",
+  "capabilityId" : "lookup_savings_balance",
+  "capabilityVersion" : 1,
+  "runId" : "replay-5f253e5c",
+  "outputs" : {
+    "savings_balance" : "$320.55"
+  },
+  "outcomeCode" : null,
+  "message" : "goal completed successfully",
+  "failedStepId" : null,
+  "expected" : null,
+  "observed" : null,
+  "evidenceDir" : null,
+  "startedAt" : "2026-09-14T22:38:40.086864Z",
+  "finishedAt" : "2026-09-14T22:38:40.345613200Z",
+  "okForCaller" : true
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Meridian Trust -- Member Search</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9edf2 100%);
+            margin: 0; padding: 0; color: #1a2332;
+        }
+        .titlebar {
+            background: #0f2942; color: #fff; padding: 16px 28px;
+            font-size: 16px; font-weight: 600; letter-spacing: 0.3px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .content { padding: 32px; max-width: 720px; margin: 0 auto; }
+        .card {
+            background: #fff; border-radius: 12px; padding: 28px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+        }
+        table { border-collapse: collapse; width: 100%; }
+        td, th { padding: 10px 14px; font-size: 14px; text-align: left; }
+        th {
+            background: #f0f3f7; color: #52606d; font-weight: 600;
+            font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        table.data tr:not(:first-child) { border-top: 1px solid #eef1f4; }
+        .banner {
+            background: #fef8ec; border: 1px solid #f5deac; border-radius: 8px;
+            padding: 14px 18px; margin-bottom: 16px; font-size: 14px; color: #7a5c1e;
+        }
+        label { font-size: 13px; color: #52606d; font-weight: 500; }
+        input[type=text] {
+            padding: 10px 12px; border: 1px solid #d3dae3; border-radius: 8px;
+            font-size: 14px; width: 100%;
+        }
+        button {
+            padding: 10px 20px; background: #2563eb; color: #fff; border: none;
+            border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+        }
+        button:hover { background: #1d4ed8; }
+        a { color: #2563eb; text-decoration: none; font-weight: 500; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<div class="titlebar">Horizon Bank: Teller Console</div>
+<div class="content">
+    <div class="card">
+
+        <form method="post" th:action="@{/search}" style="display:flex; align-items:flex-end; gap:12px;">
+            <div style="flex:1">
+                <label for="member_query">Member ID or Number</label>
+                <input type="text" id="member_query" name="member_query" th:value="${query}">
+            </div>
+            <button type="submit">Search</button>
+        </form>
+
+        <div th:if="${results != null and results.isEmpty()}" class="banner">
+            No records found for "<span th:text="${query}"></span>".
+        </div>
+
+        <table th:if="${results != null and !results.isEmpty()}" class="data" style="margin-top:20px">
+            <tr><th>Member ID</th><th>Name</th><th></th></tr>
+            <tr th:each="m : ${results}">
+                <td th:text="${m.memberId}"></td>
+                <td th:text="${m.name}"></td>
+                <td><a th:href="@{/member/{id}(id=${m.memberId})}">View Member &rarr;</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+</body>
+</html>

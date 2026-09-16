@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: cua-core
+  main:
+    web-application-type: none
+
+anthropic:
+  api-key: ${ANTHROPIC_API_KEY:PLACEHOLDER_REPLACE_ME}
+  model: claude-sonnet-4-5-20250929
